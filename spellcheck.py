@@ -47,3 +47,23 @@ def test_struc(input_value):
     raise NotImplementedError()
 
 # Run these tests with `python3 -m pytest test_spellcheck.py`
+
+
+import pytest
+
+alpha = "Checking the length & structure of the sentence."
+beta = "This sentence should fail the test"
+
+@pytest.fixture
+def input_value():
+    input = alpha
+    return input
+
+def test_length(input_value):
+    words = input_value.split()
+    assert len(words) < 10, "The string has 10 or more words"
+    assert len(input_value) < 50, "The string has 50 or more characters"
+
+def test_struc(input_value):
+    assert input_value[0].isupper(), "The string does not start with a capital letter"
+    assert input_value[-1] == '.', "The string does not end with a period"
